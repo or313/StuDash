@@ -8,4 +8,5 @@ cd /vagrant
 pipenv sync
 
 # Run Django app - remove comment when handling the Django task
-# nohup pipenv run python manage.py runserver 0.0.0.0:8000 &
+# & means carry on with starting the server and don't wait for ctrl-C
+nohup pipenv run python manage.py runserver 0.0.0.0:8000 &

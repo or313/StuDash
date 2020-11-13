@@ -51,7 +51,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'StuDash.urls'
-TEMPLATE_DIR= "/Users/orbarel/development/projects/StuDash/StuDash_home/templates"
 
 TEMPLATES = [
     {

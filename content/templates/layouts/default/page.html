@@ -59,9 +59,38 @@
             >
               {{request.user.username}}'s Account
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a
+                class="dropdown-item"
+                href="{% url 'accounts:change_profile' %}"
+                >{% trans 'Edit profile' %}</a
+              >
+              <a
+                class="dropdown-item"
+                href="{% url 'accounts:change_password' %}"
+                >{% trans 'Change password' %}</a
+              >
+              <a class="dropdown-item" href="{% url 'accounts:change_email' %}"
+                >{% trans 'Change email' %}</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'accounts:log_out' %}"
+                >{% trans 'Log out' %}</a
+              >
+            </div>
           </li>
-          {% else %} {% endif %}
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:log_in' %}"
+              >{% trans 'Log in' %}</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:sign_up' %}"
+              >{% trans 'Create an account' %}</a
+            >
+          </li>
+          {% endif %}
         </ul>
 
         <ul class="navbar-nav"></ul>
@@ -88,7 +117,6 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
   </body>
 </html>

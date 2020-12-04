@@ -6,7 +6,7 @@ from django.contrib.auth.views import (
     LogoutView as BaseLogoutView, PasswordChangeView as BasePasswordChangeView,
     PasswordResetDoneView as BasePasswordResetDoneView, PasswordResetConfirmView as BasePasswordResetConfirmView,
 )
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
 from django.utils.http import is_safe_url
@@ -20,7 +20,7 @@ from django.views.generic import View, FormView
 from django.conf import settings
 
 from .utils import (
-     send_reset_password_email, send_forgotten_username_email,
+    send_reset_password_email, send_forgotten_username_email,
 )
 from .forms import (
     SignInViaUsernameForm, SignUpForm,
@@ -99,7 +99,6 @@ class SignUpView(GuestOnlyView, FormView):
         if settings.DISABLE_USERNAME:
             user.username = f'user_{user.id}'
             user.save()
-
 
         raw_password = form.cleaned_data['password1']
 

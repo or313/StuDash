@@ -13,6 +13,7 @@ def send_mail(to, template, context):
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
 
+
 def send_reset_password_email(request, email, token, uid):
     context = {
         'subject': _('Restore password'),

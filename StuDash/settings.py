@@ -1,7 +1,6 @@
 import os
 import warnings
 from django.utils.translation import ugettext_lazy as _
-from os.path import dirname
 from pathlib import Path
 
 

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # Application apps
     "main",
     "accounts",
+    "messages",
 ]
 
 MIDDLEWARE = [

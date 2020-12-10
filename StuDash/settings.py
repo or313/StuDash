@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     "main",
     "accounts",
     "forumMessages",
-    "forumMessages.apps.ForumMessagesConfig",
+    "bookmarks",
 ]
 
 MIDDLEWARE = [

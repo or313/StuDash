@@ -17,6 +17,7 @@ class Message(models.Model):
         newMessage.category = category
         newMessage.text = text
         newMessage.date = timezone.now
+        newMessage.save()
         return newMessage
 
     @classmethod
@@ -26,6 +27,7 @@ class Message(models.Model):
 
     def editMessage(self, text):
         self.text = text
+        self.save()
         pass
 
 

@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "accounts",
     "forumMessages",
     "bookmarks",
-    ]
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

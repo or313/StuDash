@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Course
 # descripition- Users are related to certain courses.
 # for each course, the user is able to create relevant bookmarks
 # each bookmark stores url, name and last visit date in order to enable potential future filtering

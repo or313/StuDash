@@ -6,7 +6,7 @@ from django.conf import settings
 
 class Course (models.Model):
     course_name = models.CharField(max_length=50)
-    credinitials = models.IntegerField(max_length=1)
+    credinitials = models.IntegerField
 
 
 class Grade(models.Model):
@@ -17,9 +17,9 @@ class Grade(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)s_student')
     course = models.ForeignKey(Course, on_delete=models.RESTRICT)
-    grade = models.IntegerField(max_length=3)
+    grade = models.IntegerField
     semester = models.CharField(max_length=1, choices=SEMESTER_NAME)
-    year = models.IntegerField(max_length=4)
+    year = models.IntegerField
 
     @classmethod
     def addGradeUserCourse(cls, user, courseID, grade, semester, year):

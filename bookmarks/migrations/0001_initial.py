@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('urlname', models.CharField(max_length=30)),
                 ('last_view_date', models.DateTimeField(auto_now=True, null=True)),
                 ('course', models.ForeignKey(default='SOME STRING',
-                on_delete=django.db.models.deletion.CASCADE, to='grades.course')),
+                    on_delete=django.db.models.deletion.CASCADE, to='grades.course')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "main",
     "accounts",
     "forumMessages",
+    "bookmarks",
     "grades.apps.GradesConfig",
 ]
 

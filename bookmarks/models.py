@@ -7,12 +7,31 @@ from grades.models import Course
 
 
 class Bookmark (models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
     url = models.URLField(max_length=200)
     urlname = models.CharField(max_length=30)
-    last_view_date = models.DateTimeField(auto_now=True, null=True)
-    date_created = models.DateTimeField(auto_now=True, null=True)
+    last_view_date = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
         return self.urlname
+
+    @classmethod
+    def add_bookmark(cls, user, course, url, urlname):
+        """Creates new bookmark"""
+        b = Bookmark.objects.create(user=user, course=course, url=url, urlname=urlname)
+        b.save()
+        pass
+
+    def remove_bookmark(cls):
+        '''deleted bookmark'''
+        cls.delete()
+        pass
+
+    @classmethod
+    def course_feed(cls):
+        """Get the list of bookmarks to display on a Course page
+        return: A QuerySet containing all the bookmarks
+        ordered from the newest to the oldest added
+        """
+        return cls.objects.order_by('-last_view_date')

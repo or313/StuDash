@@ -1,6 +1,5 @@
 import os
 import warnings
-from django.utils.translation import ugettext_lazy as _
 from pathlib import Path
 
 
@@ -123,9 +122,6 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 USE_I18N = True
 USE_L10N = True
 LANGUAGE_CODE = "en"
-LANGUAGES = [
-    ("en", _("English")),
-]
 
 TIME_ZONE = "UTC"
 USE_TZ = True

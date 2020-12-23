@@ -8,10 +8,11 @@ from grades.models import Course
 
 class Bookmark (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, default='SOME STRING')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     url = models.URLField(max_length=200)
     urlname = models.CharField(max_length=30)
     last_view_date = models.DateTimeField(auto_now=True, null=True)
+    date_created = models.DateTimeField(auto_now=True, null=True)
 
     def __str__(self):
         return self.urlname

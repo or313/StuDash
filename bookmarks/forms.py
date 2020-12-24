@@ -5,4 +5,4 @@ from bookmarks.models import Bookmark
 class BookmarkForm(forms.ModelForm):
     class Meta:
         model = Bookmark
-        fields = ('url', 'urlname')
+        fields = ('course','url', 'urlname')

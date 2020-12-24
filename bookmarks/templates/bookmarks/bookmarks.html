@@ -5,13 +5,6 @@
 
 {% block content %}
 
-
-<ul>
-    {% for bookmark in bookmarks_list %}
-    <li>{{ bookmark.urlname }}</li>
-    {% endfor %}
-</ul>
-
 <div>
     <form method="POST">
         {% csrf_token %}
@@ -27,6 +20,12 @@
         {% endif %}
     </form>
 </div>
+
+<ul>
+    {% for bookmark in bookmarks_list %}
+    <li>{{ bookmark.urlname }}</li>
+    {% endfor %}
+</ul>
 
 
 {% endblock %}

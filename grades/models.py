@@ -5,7 +5,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Course (models.Model):
-    course_name = models.CharField(max_length=50,unique=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+                             related_name='%(class)s_student', null=True, blank=True)
+    course_name = models.CharField(max_length=50)
     credinitials = models.IntegerField(
         default=1,
         validators=[
@@ -14,13 +16,6 @@ class Course (models.Model):
         ]
      )
 
-    @classmethod
-    def addNewCourse(cls, name, credinitials):
-        newCourse = Course.objects.create()
-        newCourse.course_name = name
-        newCourse.credinitials = credinitials
-        newCourse.save()
-        pass
 
 class Grade(models.Model):
     SEMESTER_NAME = (

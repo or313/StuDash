@@ -1,12 +1,10 @@
 from django.contrib import messages
 import django_tables2 as tables
 from django_tables2 import SingleTableView
-from django.views.generic import TemplateView, ListView, FormView
+from django.views.generic import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from grades.models import Course
 from grades.forms import NewCourseForm
-from django.http import HttpResponse
 from django_tables2.utils import A
 from django.shortcuts import redirect
 
@@ -17,7 +15,7 @@ from django.shortcuts import redirect
 class CourseListTable(tables.Table):
     class Meta:
         model = Course
-        exclude = ("id", "user" )
+        exclude = ("id", "user")
     delete = tables.LinkColumn("grades:deleteCourse", text='Delete', args=[A('id')], attrs={'a': {'class': 'btn'}})
 
 
@@ -29,7 +27,7 @@ def deleteCourse(request, pk):
 
 
 
-class CourseList(LoginRequiredMixin,SingleTableView ,FormView):
+class CourseList(LoginRequiredMixin, SingleTableView, FormView):
     login_url = '/accounts/log-in'
     model = Course
     all_data = model.objects.all()
@@ -37,9 +35,6 @@ class CourseList(LoginRequiredMixin,SingleTableView ,FormView):
     form_class = NewCourseForm
     table_class = CourseListTable
     success_url = "/courses"
-
-    def get_data(self, request):
-        return entries.filter(user=request.user)
 
     def form_valid(self, form):
         user = self.request.user

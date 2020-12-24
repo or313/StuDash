@@ -14,7 +14,7 @@ class Course (models.Model):
             MaxValueValidator(100),
             MinValueValidator(1)
         ]
-     )
+    )
 
 
 class Grade(models.Model):

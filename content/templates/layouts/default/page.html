@@ -41,13 +41,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarsExampleDefault"
-      >
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav justify-content-between" style="width: 100%">
           {% if request.user.is_authenticated %}
-          <li class="nav-item dropdown">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'grades:courseList' %}">
+              My courses
+            </a>
+          </li>
+          <li class="nav-item dropdown justify-content-end">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -97,9 +99,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid mt-3">
-      {% bootstrap_messages %} {% block content %} No content. {% endblock %}
-    </div>
+    <div class="container-fluid mt-3">{% block content %} {% endblock %}</div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

@@ -1,13 +1,26 @@
 from django.db import models
 from django.conf import settings
-# Each user can add, modify or remove course from is list
-# Each course contains coures id(default by Django), name, credinitials and grade
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 
 class Course (models.Model):
-    course_name = models.CharField(max_length=50)
-    credinitials = models.IntegerField(default=2)
+    course_name = models.CharField(max_length=50,unique=True)
+    credinitials = models.IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ]
+     )
 
+    @classmethod
+    def addNewCourse(cls, name, credinitials):
+        newCourse = Course.objects.create()
+        newCourse.course_name = name
+        newCourse.credinitials = credinitials
+        newCourse.save()
+        pass
 
 class Grade(models.Model):
     SEMESTER_NAME = (
@@ -32,7 +45,3 @@ class Grade(models.Model):
         newGrade.year = year
         return newGrade
 
-    @classmethod
-    def removeCourse(cls, courseID):
-        Course.object.filter(id=courseID).delete()
-        pass

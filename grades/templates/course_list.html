@@ -1,0 +1,13 @@
+{% extends 'layouts/default/page.html' %} {% load bootstrap4 %} 
+{% load render_table from django_tables2 %} {% block content %}
+<h2>Your Courses</h2>
+
+<h5>Add a new course here:</h5>
+<div class="m-4">
+  <form method="post">
+    {% csrf_token %} {% bootstrap_form form %} {% bootstrap_messages messages %}
+    <button class="btn btn-primary">Add course</button>
+  </form>
+</div>
+<div class="m-5">{% render_table table %}</div>
+{% endblock %}

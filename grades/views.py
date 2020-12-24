@@ -17,7 +17,7 @@ from django.shortcuts import redirect
 class CourseListTable(tables.Table):
     class Meta:
         model = Course
-        exclude = ("id", )
+        exclude = ("id", "user" )
     delete = tables.LinkColumn("grades:deleteCourse", text='Delete', args=[A('id')], attrs={'a': {'class': 'btn'}})
 
 
@@ -32,19 +32,28 @@ def deleteCourse(request, pk):
 class CourseList(LoginRequiredMixin,SingleTableView ,FormView):
     login_url = '/accounts/log-in'
     model = Course
+    all_data = model.objects.all()
     template_name = "course_list.html"
     form_class = NewCourseForm
     table_class = CourseListTable
     success_url = "/courses"
+
+    def get_data(self, request):
+        return entries.filter(user=request.user)
 
     def form_valid(self, form):
         user = self.request.user
         newCourse = Course()
         newCourse.course_name = form.cleaned_data["course_name"]
         newCourse.credinitials = form.cleaned_data["credinitials"]
+        newCourse.user = user
         newCourse.save()
 
         messages.success(self.request, "Course was added succesfuly")
 
         return super(CourseList, self).form_valid(form)
+
+    def get_queryset(self):
+        qs = Course.objects.filter(user_id=self.request.user)
+        return qs
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from grades.views import deleteCourse
-from grades.views import CourseList,NewCourseView
+from grades.views import CourseList
 
 
 

@@ -30,7 +30,6 @@ class Course (models.Model):
     @classmethod
     def removeCourse(cls, courseID):
         Course.objects.filter(id=courseID).delete()
-        pass
 
 
 class Semester(models.TextChoices):
@@ -58,4 +57,3 @@ class Grade(models.Model):
     @classmethod
     def removeGrade(cls, gradeID):
         Grade.objects.filter(id=gradeID).delete()
-        pass

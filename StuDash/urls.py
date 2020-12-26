@@ -10,6 +10,7 @@ urlpatterns = [
     path("courses/", include("grades.urls"), name="courses"),
     path("", IndexPageView.as_view(), name="home"),
     path("bookmarks/", include("bookmarks.urls"), name="bookmarks"),
+    path("grades/", include("grades.urls"), name="grades"),
 ]
 
 if settings.DEBUG:

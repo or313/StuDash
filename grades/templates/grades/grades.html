@@ -1,0 +1,66 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+
+
+<h1>Grades List</h1>
+<h5>Add a new grade here:</h5>
+<br><br>
+
+<div>
+    <form method="POST">
+      {% bootstrap_form form %}
+      {% csrf_token %}
+      {% bootstrap_messages messages %}
+      <button class="btn btn-success">{% trans 'Add grade' %}</button>
+    </form>
+    <br><br>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Grade</th> 
+            <th scope="col">Semester</th>
+            <th scope="col">Year</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for grade in grades %}
+        <tr>
+            <td>{{grade.course.course_name}} </td>
+            <td>{{grade.grade}} </td>
+            <td>{{grade.semester}} </td>
+            <td>{{grade.year}} </td>
+            <td>
+                <form action=" {% url 'grades:deleteGrade' grade.id %}" method="POST">
+                  {% csrf_token %}
+                  <button class="btn btn-danger">{% trans 'Delete' %}</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+<br>
+<div>
+    <h5>To calculate you GPA press the button: </h5>
+    <br></br>
+    <button onclick="printGPA()">Calculate GPA</button>
+    <p id="demo"></p>
+    <br>
+    <script>
+        function printGPA() {
+        document.getElementById("demo").innerHTML = {{ GPA }};
+        }
+    </script>       
+</div>
+    
+{% endblock %}

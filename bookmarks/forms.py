@@ -6,5 +6,5 @@ from grades.models import Course
 class BookmarkForm(forms.ModelForm):
     class Meta:
         model = Bookmark
-        fields = ('course','url', 'urlname')
+        fields = ('course', 'url', 'urlname')
         course = forms.ModelChoiceField(queryset=Course.objects.all(), empty_label=None)

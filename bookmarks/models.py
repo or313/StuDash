@@ -19,13 +19,14 @@ class Bookmark (models.Model):
     @classmethod
     def add_bookmark(cls, user, course, url, urlname):
         """Creates new bookmark"""
-        b = Bookmark.objects.create(user=user, course=course, url=url, urlname=urlname)
-        b.save()
+        bm = Bookmark(user=user, course=course, url=url, urlname=urlname)
+        bm.save()
         pass
 
-    def remove_bookmark(cls):
+    @classmethod
+    def remove_bookmark(cls, bm):
         '''deleted bookmark'''
-        cls.delete()
+        bm.delete()
         pass
 
     @classmethod

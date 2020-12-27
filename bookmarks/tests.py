@@ -22,9 +22,8 @@ class TestBookmark:
         ]
 
     def test_add_bookmark(cls):
-        course = Course.objects.create(
-            course_name="intro 101", credinitials="3")
-        user = User.objects.create_user(username='john', password='johnpassword')
+        course = Course(course_name="intro 101", credinitials="3")
+        user = User(username='john', password='johnpassword')
         user.save()
         course.save()
         Bookmark.add_bookmark(user, course, 'https://www.youtube.com', 'Youtube')
@@ -34,8 +33,8 @@ class TestBookmark:
         ]
 
     def test_remove_bookmark(cls):
-        d = Bookmark.objects.get(pk=1)
-        Bookmark.remove_bookmark(d)
+        bm = Bookmark.objects.get(pk=1)
+        Bookmark.remove_bookmark(bm)
         new = Bookmark.objects.all()
         assert list(new.values_list('user', 'course', 'url', 'urlname')) == [
             (1, 1, 'https://www.ynet.co.il', 'Ynet'),

@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     # Vendor apps
     "bootstrap4",
+    "django_tables2",
+
     # Application apps
     "main",
     "accounts",
@@ -63,7 +65,7 @@ TEMPLATES = [
         },
     },
 ]
-
+DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap.html"
 WSGI_APPLICATION = "StuDash.wsgi.application"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -100,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 DISABLE_USERNAME = False
 LOGIN_VIA_EMAIL = True
 LOGIN_VIA_EMAIL_OR_USERNAME = False
-LOGIN_REDIRECT_URL = "home"
+LOGIN_REDIRECT_URL = "grades:courseList"
 # LOGIN_URL = "accounts:log_in"
 USE_REMEMBER_ME = True
 

@@ -7,6 +7,7 @@ from main.views import IndexPageView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("accounts.urls")),
+    path("courses/", include("grades.urls"), name="courses"),
     path("", IndexPageView.as_view(), name="home"),
 ]
 

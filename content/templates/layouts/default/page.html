@@ -44,12 +44,23 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav justify-content-between" style="width: 100%">
           {% if request.user.is_authenticated %}
+<<<<<<< HEAD
           <li class="nav-item">
             <a class="nav-link" href="{% url 'grades:courseList' %}">
               My courses
             </a>
           </li>
           <li class="nav-item dropdown justify-content-end">
+=======
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav justify-content-between" style="width: 100%">    
+          <li class="nav-item dropdown">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Bookmarks' %}">
+                My bookmarks
+              </a>
+            </li>
+>>>>>>> f44f285 (UI and saving to DB)
             <a
               class="nav-link dropdown-toggle"
               href="#"

@@ -7,25 +7,30 @@
 
 <div>
     <form method="POST">
+        {% bootstrap_form form %}
         {% csrf_token %}
-        <label for="bookmarks_list">Add website's address:</label>
-        <input type="url" name="url" required>
-        <label for="bookmarks_list">Add website's name:</label>
-        <input type="text" name="urlname" required>
         <button class="btn btn-success">{% trans 'Add Bookmark' %}</button>
-        {% if messages %}
-        {% for message in messages %}
-        {{Messages}}
-        {% endfor %}
-        {% endif %}
     </form>
 </div>
 
-<ul>
-    {% for bookmark in bookmarks_list %}
-    <li>{{ bookmark.urlname }}</li>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Website</th>
+        <th scope="col">Link</th>
+        <th scope="col">Course</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for bookmark in bookmarks %}  
+      <tr>
+        <td>{{ bookmark.urlname }}</td>
+        <td>{{bookmark.url}}</td>
+        <td>{{bookmark.course}}</td>
+      </tr>
     {% endfor %}
-</ul>
+    </tbody>
+  </table>
 
 
 {% endblock %}

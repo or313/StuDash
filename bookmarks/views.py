@@ -1,27 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from bookmarks.models import Bookmark
 from bookmarks.forms import BookmarkForm
 from grades.models import Course
 from django.contrib.auth.models import User
 
-# @login_required
-def AddBookmarks(request):
-    bookmarks = Bookmark.objects.all().order_by('-last_view_date')
+
+def Create_Bookmarks(request):
     if request.method == "POST":
         form = BookmarkForm(request.POST)
+        user = request.user
         if form.is_valid():
-            new_bookmark = Bookmark()
-            new_bookmark.course = Course.objects.get(id=1)
-            new_bookmark.user = User.objects.get(id=1)
-            new_bookmark.save()
+            url = form.cleaned_data['url']
+            urlname = form.cleaned_data['urlname']
+            course = form.cleaned_data['course']
+            bookmark = Bookmark(user=user, course=course, url=url, urlname=urlname)       
+            bookmark.save()
             messages.success(request, "Bookmark saved successfully")
-            return render(request, 'bookmarks/bookmarks.html',
-                          {'bookmarks_list': bookmarks})
-        '''
-        Function for testing,
-        will be added once the testing PR will be merged
-        bookmarks = Bookmark.course_feed()
-        '''
+            return redirect('Bookmarks')
     else:
-        return render(request, 'bookmarks/bookmarks.html',  {'bookmarks_list': bookmarks})
+        form = BookmarkForm()
+    bookmarks = Bookmark.objects.filter(user = request.user)
+    return render(request, 'bookmarks/bookmarks.html', {
+        'bookmarks': bookmarks,
+        'form': form,
+    })

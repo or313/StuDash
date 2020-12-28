@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 from grades.models import Course
 # descripition- Users are related to certain courses.
 # for each course, the user is able to create relevant bookmarks
@@ -7,7 +6,6 @@ from grades.models import Course
 
 
 class Bookmark (models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     url = models.URLField(max_length=200)
     urlname = models.CharField(max_length=30)
@@ -17,9 +15,9 @@ class Bookmark (models.Model):
         return self.urlname
 
     @classmethod
-    def add_bookmark(cls, user, course, url, urlname):
+    def add_bookmark(cls, course, url, urlname):
         """Creates new bookmark"""
-        bm = Bookmark(user=user, course=course, url=url, urlname=urlname)
+        bm = Bookmark(course=course, url=url, urlname=urlname)
         bm.save()
         pass
 

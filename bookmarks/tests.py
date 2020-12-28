@@ -14,30 +14,30 @@ class TestBookmark:
         out = Bookmark.course_feed()
         assert isinstance(out, QuerySet)
         assert all(isinstance(b, Bookmark) for b in out)
-        assert list(out.values_list('user', 'course', 'url', 'urlname')) == [
-            (2, 2, 'https://www.facebook.com', 'Facebook'),
-            (1, 2, 'https://www.facebook.com', 'Facebook'),
-            (1, 1, 'https://www.ynet.co.il', 'Ynet'),
-            (1, 1, 'https://www.google.com', 'Google'),
+        assert list(out.values_list('course', 'url', 'urlname')) == [
+            (2, 'https://www.facebook.com', 'Facebook'),
+            (2, 'https://www.facebook.com', 'Facebook'),
+            (1, 'https://www.ynet.co.il', 'Ynet'),
+            (1, 'https://www.google.com', 'Google'),
         ]
 
     def test_add_bookmark(cls):
-        course = Course(course_name="intro 101", credinitials="3")
         user = User(username='john', password='johnpassword')
         user.save()
+        course = Course(user=user, course_name="intro 101", credinitials="3")
         course.save()
-        Bookmark.add_bookmark(user, course, 'https://www.youtube.com', 'Youtube')
+        Bookmark.add_bookmark(course, 'https://www.youtube.com', 'Youtube')
         new = Bookmark.objects.filter(urlname='Youtube')
-        assert list(new.values_list('user', 'course', 'url', 'urlname')) == [
-            (3, 3, 'https://www.youtube.com', 'Youtube'),
+        assert list(new.values_list('course', 'url', 'urlname')) == [
+            (3, 'https://www.youtube.com', 'Youtube'),
         ]
 
     def test_remove_bookmark(cls):
         bm = Bookmark.objects.get(pk=1)
         Bookmark.remove_bookmark(bm)
         new = Bookmark.objects.all()
-        assert list(new.values_list('user', 'course', 'url', 'urlname')) == [
-            (1, 1, 'https://www.ynet.co.il', 'Ynet'),
-            (1, 2, 'https://www.facebook.com', 'Facebook'),
-            (2, 2, 'https://www.facebook.com', 'Facebook')
+        assert list(new.values_list('course', 'url', 'urlname')) == [
+            (1, 'https://www.ynet.co.il', 'Ynet'),
+            (2, 'https://www.facebook.com', 'Facebook'),
+            (2, 'https://www.facebook.com', 'Facebook')
         ]

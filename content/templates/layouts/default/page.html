@@ -46,18 +46,18 @@
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'grades:courseList' %}">
-              My courses
+              My Courses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmarks:create' %}">
+              My Bookmarks
             </a>
           </li>
           <li class="nav-item dropdown justify-content-end">
           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav justify-content-between" style="width: 100%">    
           <li class="nav-item dropdown">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'Bookmarks' %}">
-                My bookmarks
-              </a>
-            </li>
             <a
               class="nav-link dropdown-toggle"
               href="#"

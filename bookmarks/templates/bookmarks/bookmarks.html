@@ -4,33 +4,42 @@
 {% load i18n %}
 
 {% block content %}
+<h2>Your Bookmarks</h2>
 
+<h5>Add a new bookmark here:</h5>
+<br><br>
 <div>
-    <form method="POST">
-        {% bootstrap_form form %}
-        {% csrf_token %}
-        <button class="btn btn-success">{% trans 'Add Bookmark' %}</button>
-    </form>
+  <form method="POST">
+    {% bootstrap_form form %}
+    {% csrf_token %}
+    {% bootstrap_messages messages %}
+    <button class="btn btn-success">{% trans 'Add Bookmark' %}</button>
+  </form>
+  <br><br>
 </div>
 
 <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Website</th>
-        <th scope="col">Link</th>
-        <th scope="col">Course</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for bookmark in bookmarks %}  
-      <tr>
-        <td>{{ bookmark.urlname }}</td>
-        <td>{{bookmark.url}}</td>
-        <td>{{bookmark.course}}</td>
-      </tr>
+  <thead>
+    <tr>
+      <th scope="col">Website</th>
+      <th scope="col">Course</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bookmark in bookmarks %}
+    <tr>
+      <td><a href="{{bookmark.url}}"> {{ bookmark.urlname }}</a></td>
+      <td>{{bookmark.course}}</td>
+      <td>
+        <form action=" {% url 'bookmarks:delete' bookmark.pk %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-danger">{% trans 'Delete' %}</button>
+        </form>
+      </td>
+      </form>
+    </tr>
     {% endfor %}
-    </tbody>
-  </table>
-
-
+  </tbody>
+</table>
 {% endblock %}

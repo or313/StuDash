@@ -1,0 +1,33 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+
+<div>
+    <form method="POST">
+        {% bootstrap_form form_newCatergory %}
+        {% csrf_token %}
+        <button class="btn btn-primary">{% trans 'Add a new category:' %}</button>
+    </form>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Category name</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for category in categories %}  
+      <tr>
+        <td>{{category.name}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="m-5">{% render_table table %}</div>
+
+{% endblock %}

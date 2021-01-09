@@ -4,11 +4,16 @@ from .forms import MessageForm, CategoryForm
 
 
 def ViewMessages(request):
+    print("here")
     messages = Message.objects.order_by('-date')
     if request.method == "POST":
         form = MessageForm(request.POST)
         if form.is_valid():
-            form.save()
+            msg = Message.objects.create(
+            user = request.user,
+            date = form.cleaned_data["date"],
+            text = form.cleaned_data["text"])
+            msg.categories.add(form.cleaned_data["categories"])
             return redirect("forumMessages:view_messages")
     else:
         form = MessageForm()

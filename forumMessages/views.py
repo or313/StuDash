@@ -12,7 +12,7 @@ def ViewMessages(request):
             return redirect(ViewMessages)
     else:
         form = MessageForm()
-    return render(request, 'forumMessages/messagelist.html', {'messages': messages, 'form': form, })
+    return render(request, 'messagelist.html', {'messages': messages, 'form': form, })
 
 
 def ViewCategories(request):
@@ -24,4 +24,4 @@ def ViewCategories(request):
             return redirect(ViewCategories)
     else:
         form = CategoryForm()
-    return render(request, 'forumMessages/categorylist.html', {'categories': categories, 'form': form, })
+    return render(request, 'categorylist.html', {'categories': categories, 'form': form, })

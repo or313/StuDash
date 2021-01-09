@@ -73,7 +73,6 @@ class LogInView(GuestOnlyView, FormView):
         if settings.USE_REMEMBER_ME:
             if not form.cleaned_data["remember_me"]:
                 request.session.set_expiry(0)
-
         login(request, form.user_cache)
 
         redirect_to = request.POST.get(

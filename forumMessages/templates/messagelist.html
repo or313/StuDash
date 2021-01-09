@@ -2,12 +2,13 @@
 
 {% load bootstrap4 %}
 {% load i18n %}
+{% load render_table from django_tables2 %} 
 
 {% block content %}
 
 <div>
     <form method="POST">
-        {% bootstrap_form form_newMessage %}
+        {% bootstrap_form form %}
         {% csrf_token %}
         <button class="btn btn-primary">{% trans 'Write a new message' %}</button>
     </form>

@@ -11,7 +11,7 @@ urlpatterns = [
     path("", IndexPageView.as_view(), name="home"),
     path("bookmarks/", include("bookmarks.urls"), name="bookmarks"),
     path("grades/", include("grades.urls"), name="grades"),
-    path("messages/", include("messages.urls"), name="messages"),
+    path("messages/", include("forumMessages.urls"), name="messages"),
 ]
 
 if settings.DEBUG:

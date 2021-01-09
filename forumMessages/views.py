@@ -9,9 +9,10 @@ def ViewMessages(request):
         form = MessageForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(ViewMessages)
+            return redirect("forumMessages:view_messages")
     else:
         form = MessageForm()
+    print("messages",messages)
     return render(request, 'messagelist.html', {'messages': messages, 'form': form, })
 
 

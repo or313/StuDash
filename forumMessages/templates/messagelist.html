@@ -14,27 +14,7 @@
     </form>
 </div>
 
-<table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Author</th>
-        <th scope="col">Content</th>
-        <th scope="col"><a href="categorylist.html">Categories</a></th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for message in messages %}  
-      <tr>
-        <td>{{message.date}}</td>
-        <td>{{message.user}}</td>
-        <td>{{message.text}}</td>
-        <td>{{message.category}}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
 
-  <div class="m-5">{% render_table table %}</div>
+  <div class="m-5">{% render_table messages %}</div>
 
 {% endblock %}

@@ -12,7 +12,6 @@ def ViewMessages(request):
             return redirect("forumMessages:view_messages")
     else:
         form = MessageForm()
-    print("messages",messages)
     return render(request, 'messagelist.html', {'messages': messages, 'form': form, })
 
 

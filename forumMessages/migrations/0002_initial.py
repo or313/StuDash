@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
         category2 = Category.objects.create(name='General_discussions')
         message_test_data = [
             (user1, timezone.now, 'Lorem ipsum', category1),
-            (user2, timezone.now, 'Dolor sit amet',category2),
+            (user2, timezone.now, 'Dolor sit amet', category2),
         ]
         with transaction.atomic():
             for user, date, text, category in message_test_data:

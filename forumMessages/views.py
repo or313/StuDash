@@ -10,9 +10,9 @@ def ViewMessages(request):
         form = MessageForm(request.POST)
         if form.is_valid():
             msg = Message.objects.create(
-            user = request.user,
-            date = form.cleaned_data["date"],
-            text = form.cleaned_data["text"])
+                user=request.user,
+                date=form.cleaned_data["date"],
+                text=form.cleaned_data["text"])
             msg.categories.add(form.cleaned_data["categories"])
             return redirect("forumMessages:view_messages")
     else:

@@ -6,6 +6,7 @@ class MessageForm(forms.ModelForm):
     categories = forms.ModelChoiceField(
         queryset=Category.objects.all()
     )
+
     class Meta:
         model = Message
         fields = ('user', 'text', 'date', 'categories')

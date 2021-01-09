@@ -21,7 +21,7 @@ def ViewCategories(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(ViewCategories)
+            return redirect("forumMessages:view_messages")
     else:
         form = CategoryForm()
     return render(request, 'categorylist.html', {'categories': categories, 'form': form, })

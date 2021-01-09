@@ -12,6 +12,9 @@
         {% csrf_token %}
         <button class="btn btn-primary">{% trans 'Write a new message' %}</button>
     </form>
+        <button class="btn btn-primary" style="margin-top:20px">
+            <a style="color:#ffff" href="{% url 'forumMessages:view_categories' %}">{% trans 'Add new category' %}</a>
+        </button>
 </div>
 
 

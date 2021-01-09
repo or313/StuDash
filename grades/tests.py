@@ -34,7 +34,7 @@ class TestCourse:
         assert list(out.values_list('user', 'course_name', 'credinitials')) == [
             (1, 'course3', 3),
             (2, 'course2', 3),
-            (3, 'java', 3),
+            (5, 'java', 3),
         ]
 
     def test_removeCourse(cls):

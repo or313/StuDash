@@ -4,7 +4,6 @@ from .forms import MessageForm, CategoryForm
 
 
 def ViewMessages(request):
-    print("here")
     messages = Message.objects.order_by('-date')
     if request.method == "POST":
         form = MessageForm(request.POST)
